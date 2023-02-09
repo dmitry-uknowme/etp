@@ -1,0 +1,21 @@
+$etp_procedure_process_app $mol_book2
+	yard $hyoo_sync_client
+	user $etp_procedure_process_person
+	pages /
+		<= Spaces $etp_procedure_process_person_spaces
+			person <= user
+			foot /
+				<= Online $hyoo_sync_online
+					yard <= yard
+				<= Role_select $mol_select
+					value <= role
+					dictionary <= role_options
+		<= Steps $etp_procedure_process_space_steps
+			person <= user
+		<= Bids $etp_procedure_process_space_bids
+			person <= user
+			space <= space $etp_procedure_process_space
+		<= Step_review $etp_procedure_process_step_review
+			space <= space $etp_procedure_process_space
+		<= Step_summing $etp_procedure_process_step_summing
+			space <= space $etp_procedure_process_space

@@ -1,0 +1,31 @@
+$etp_procedure_process_step_review $mol_page
+	space $etp_procedure_process_space
+		title? => space_title?
+		bid_add => bid_add
+		bid_drop* => bid_drop*
+	Title $mol_string_button
+		value \Рассмотрение заявок
+	title \Рассмотрение заявок
+	body /
+		<= Bid_list $mol_list rows <= bid_list /
+			<= Bid*0 $mol_view sub /
+				<= Number_labeler* $mol_labeler
+					title \№ заявки
+					Content <= Bid_number* $mol_string
+						value? <=> bid_number*? \
+						enabled <= bid_number_changeable false
+				<= Title_labeler* $mol_labeler
+					title \Участник
+					Content <= Bid_title* $mol_string_button
+						value? <=> bid_title*? \
+				<= Date_labeler* $mol_labeler
+					title \Дата подачи
+					Content <= Bid_date* $mol_date
+						value_moment?val <=> bid_date*?val $mol_time_moment
+				<= Status_labeler* $mol_labeler
+					title \Статус
+					Content <= Bid_status* $mol_select
+						value? <=> bid_status*? \
+						options <= bid_statuses /
+
+

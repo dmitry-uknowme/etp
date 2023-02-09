@@ -1,0 +1,18 @@
+$etp_procedure_process_person_spaces $mol_page
+	person $etp_procedure_process_person
+		space_add => space_add
+		space_drop* => space_drop*
+	title \Сохранения
+	tools /
+		<= Space_add $mol_button_major
+			click <= space_add
+			sub / <= Space_add_icon $mol_icon_plus
+	body /
+		<= Space_list $mol_list rows <= space_list /
+			<= Space*0 $mol_view sub /
+				<= Space_link* $mol_link
+					arg * space <= space_id* \
+					title <= space_title* @ \Unnamed
+				<= Space_drop* $mol_button_minor
+					click <= space_drop*
+					sub / <= Space_drop_icon* $mol_icon_delete

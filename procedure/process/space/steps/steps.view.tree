@@ -1,0 +1,19 @@
+$etp_procedure_process_space_steps $mol_page
+	title @ \Проведение процедуры
+	body /
+		<= Step_list $mol_list rows <= step_list /
+			<= Step0*0 $mol_view sub /
+				<= Step_link0* $mol_link
+					arg * step \add
+					title <= step_title* @ \Подача заявок
+			<= Step1*1 $mol_view sub /
+				<= Step_link1* $mol_link
+					arg * step \review
+					title \Рассмотрение заявок
+			<= Step2*2 $mol_view sub /
+				<= Step_link2* $mol_link
+					arg * step \summing_up
+					title \Подведение итогов
+				
+			
+		

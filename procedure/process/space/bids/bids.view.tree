@@ -1,0 +1,34 @@
+$etp_procedure_process_space_bids $mol_page
+	person $etp_procedure_process_person
+	space $etp_procedure_process_space
+		title? => space_title?
+		bid_add => bid_add
+		bid_drop* => bid_drop*
+	Title $mol_string_button
+		value \Подача заявок
+	title \Подача заявок
+	tools /
+		<= Bid_add $mol_button_major
+			click <= bid_add
+			sub / <= Task_add_icon $mol_icon_plus
+	body /
+		<= Bid_list $mol_list rows <= bid_list /
+			<= Bid*0 $mol_view sub /
+				<= Number_labeler* $mol_labeler
+					title \№ заявки
+					Content <= Bid_number* $mol_string
+						value? <=> bid_number*? \
+						enabled <= bid_number_changeable false
+				<= Title_labeler* $mol_labeler
+					title \Участник
+					Content <= Bid_title* $mol_string_button
+						value? <=> bid_title*? \
+						enabled <= allow_edit
+				<= Date_labeler* $mol_labeler
+					title \Дата подачи
+					Content <= Bid_date* $mol_date
+						value_moment <= bid_send_moment* $mol_time_moment
+						enabled <= allow_edit
+				<= Bid_drop* $mol_button_minor
+					click <= bid_drop*
+					sub / <= Bid_drop_icon* $mol_icon_cross
