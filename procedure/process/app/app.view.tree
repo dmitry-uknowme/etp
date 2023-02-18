@@ -1,6 +1,7 @@
 $etp_procedure_process_app $mol_book2
 	yard $hyoo_sync_client
-	user $etp_procedure_process_person
+	user $etp_procedure_process_space_user
+		role => role
 	pages /
 		<= Spaces $etp_procedure_process_person_spaces
 			person <= user

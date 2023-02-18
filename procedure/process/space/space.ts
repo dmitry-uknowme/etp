@@ -6,11 +6,11 @@ namespace $ {
     }
 
     @$mol_mem
-    owner(next?: $etp_procedure_process_person) {
+    owner(next?: $etp_procedure_process_space_user) {
       const str = this.sub("owner", $hyoo_crowd_reg).str(next && next.head);
       const id = $mol_int62_string_ensure(str);
       return id
-        ? this.world()?.Fund($etp_procedure_process_person).Item(id)
+        ? this.world()?.Fund($etp_procedure_process_space_user).Item(id)
         : null;
     }
 
@@ -26,6 +26,7 @@ namespace $ {
 
     @$mol_action
     bid_add() {
+      // console.log('this',this.owner().)
       this.sub("bids", $hyoo_crowd_list).insert([{}]);
       const obj = this.bid_list().slice(-1)[0];
       obj.status("NEW");
@@ -38,6 +39,29 @@ namespace $ {
     bid_drop(obj: $etp_procedure_process_bid) {
       const index = this.bid_list().indexOf(obj);
       this.sub("bids", $hyoo_crowd_list).cut(index);
+    }
+
+    @$mol_mem
+    users_node() {
+      return this.sub("users", $hyoo_crowd_list);
+    }
+
+    @$mol_mem
+    user_list() {
+      return this.users_node().nodes($etp_procedure_process_space_user);
+    }
+
+    @$mol_action
+    user_add() {
+      this.sub("users", $hyoo_crowd_list).insert([{}]);
+      const obj = this.user_list().slice(-1)[0];
+      return obj;
+    }
+
+    @$mol_action
+    user_drop(obj: $etp_procedure_process_space_user) {
+      const index = this.user_list().indexOf(obj);
+      this.sub("users", $hyoo_crowd_list).cut(index);
     }
   }
 }
