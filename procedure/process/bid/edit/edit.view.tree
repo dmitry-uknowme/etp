@@ -1,0 +1,17 @@
+$etp_procedure_process_bid_edit $mol_page
+	space $etp_procedure_process_space
+		bid_add => bid_add
+		bid_drop* => bid_drop*
+	title \Подать заявку
+	body /
+		<= Form $mol_form
+			form_fields /
+				<= Price_field $mol_form_field
+					name <= price_label @ \Ценовое предложение
+					bid <= name_bid \
+					control <= Price_control $mol_string
+						value?val <=> price?val \
+			buttons /
+				<= Form_submit $mol_button_major
+					title <= submit_label @ \Отправить
+					event_click <= bid_add

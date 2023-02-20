@@ -9,24 +9,24 @@ namespace $.$$ {
     }
 
     @$mol_mem
-    space_auto() {
-      const id = $mol_int62_string_ensure(this.$.$mol_state_arg.value("space"));
-      if (!id) {
-        const newSpace = this.user().space_add();
-        this.$.$mol_state_arg.value("space", newSpace.land.id());
-        return newSpace;
-      }
-      console.log("space auto", this.space());
-      return this.space();
+    space_fund() {
+      return this.yard().world().Fund($etp_procedure_process_space);
     }
 
-    auto() {
-      this.space_auto();
-    }
-
+    @$mol_mem
     space() {
-      const fund = this.yard().world().Fund($etp_procedure_process_space);
-      return fund.Item(this.space_opened() as $mol_int62_string);
+      const id = $mol_int62_string_ensure(this.$.$mol_state_arg.value("space"));
+      if (!id) return this.space_new();
+      const space = this.space_fund().Item(id);
+      console.log({ peers: space.land.peers(), peer: space.land.peer() });
+      return space;
+    }
+
+    @$mol_action
+    space_new() {
+      const space = this.space_fund().make([], ["0_0"]);
+      this.$.$mol_state_arg.go({ space: space.land.id() });
+      return space;
     }
 
     @$mol_mem
@@ -35,24 +35,17 @@ namespace $.$$ {
     }
 
     @$mol_mem
-    user() {
-      const newUser = this.home().chief.yoke(
-        "$etp_procedure_process",
-        $etp_procedure_process_person
-      )!;
-      const Role = $etp_procedure_process_person_role;
-      newUser.role(Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT);
-      return newUser;
-    }
-
     role(next?: $etp_procedure_process_person_role) {
-      console.log("roleeeeeee", next);
-      if (next !== undefined) {
-        this.user().role(next);
-        return next;
-      }
-      //   return "PARTICIPANT";
-      return this.user().role();
+      const Role = $etp_procedure_process_person_role;
+      return next || Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT;
+      // newUser.role(Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT);
+      //   console.log("roleeeeeee", next);
+      //   if (next !== undefined) {
+      //     this.user().role(next);
+      //     return next;
+      //   }
+      //   //   return "PARTICIPANT";
+      //   return this.user().role();
     }
 
     @$mol_mem
@@ -66,17 +59,23 @@ namespace $.$$ {
 
     @$mol_mem
     pages() {
+      const Role = $etp_procedure_process_person_role;
       return [
-        this.Spaces(),
+        // this.Spaces(),
+
         ...(this.space()
           ? [
               this.Steps(),
-              this.step_opened() === "add" ? this.Bids() : void 0,
-              this.step_opened() === "review" ? this.Step_review() : void 0,
+              this.step_opened() === "accepting" ? this.Bids() : void 0,
+              this.step_opened() === "reviewing" ? this.Step_review() : void 0,
               this.step_opened() === "summing_up"
                 ? this.Step_summing()
                 : void 0,
             ]
+          : []),
+        ...(this.step_opened() === "bid_edit" &&
+        this.role() === Role.PARTICIPANT
+          ? [this.Bid_edit()]
           : []),
       ];
     }

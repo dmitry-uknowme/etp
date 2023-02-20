@@ -26,10 +26,12 @@ namespace $ {
 
     @$mol_action
     bid_add() {
-      this.sub("bids", $hyoo_crowd_list).insert([{}]);
+      this.sub("bids", $hyoo_crowd_list).insert([
+        {},
+        // { number: this.bid_list().length.toString(), status: "NEW" },
+      ]);
       const obj = this.bid_list().slice(-1)[0];
       obj.status("NEW");
-      //   console.log("nnnn", this.bid_list().length.toString());
       obj.number(this.bid_list().length.toString());
       return obj;
     }

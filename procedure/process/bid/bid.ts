@@ -20,14 +20,22 @@ namespace $ {
       return this.sub("status", $hyoo_crowd_reg).str(next);
     }
 
-    @$mol_mem
-    owner(next?: $etp_procedure_process_person) {
-      const str = this.sub("owner", $hyoo_crowd_reg).str(next && next.head);
-      const id = $mol_int62_string_ensure(str);
-      return id
-        ? this.world()?.Fund($etp_procedure_process_person).Item(id)
-        : null;
-    }
+    // @$mol_mem
+    // owner(next?: $etp_procedure_process_person) {
+    //   const str = this.sub("owner", $hyoo_crowd_reg).str(next && next.head);
+    //   const id = $mol_int62_string_ensure(str);
+    //   return id
+    //     ? this.world()?.Fund($etp_procedure_process_person).Item(id)
+    //     : null;
+    // }
+    // @$mol_mem
+    // owner(next?: $etp_procedure_process_person) {
+    //   const str = this.sub("owner", $hyoo_crowd_reg).str(next && next.head);
+    //   const id = $mol_int62_string_ensure(str);
+    //   return id
+    //     ? this.world()?.Fund($etp_procedure_process_person).Item(id)
+    //     : null;
+    // }
 
     @$mol_mem
     send_moment(next?: string) {
