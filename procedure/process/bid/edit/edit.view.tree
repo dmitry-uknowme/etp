@@ -4,13 +4,16 @@ $etp_procedure_process_bid_edit $mol_page
 		bid_drop* => bid_drop*
 	title \Подать заявку
 	body /
+		<= Info $etp_procedure_process_widget_info
+			section_title \Сведения о закупке
 		<= Form $mol_form
 			form_fields /
 				<= Price_field $mol_form_field
 					name <= price_label @ \Ценовое предложение
 					bid <= name_bid \
-					control <= Price_control $mol_string
-						value?val <=> price?val \
+					control <= Price_control $mol_number
+						precision_view 0.01
+						value?val <=> price?val 0.5
 			buttons /
 				<= Form_submit $mol_button_major
 					title <= submit_label @ \Отправить

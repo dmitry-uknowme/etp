@@ -37,7 +37,8 @@ namespace $.$$ {
     @$mol_mem
     role(next?: $etp_procedure_process_person_role) {
       const Role = $etp_procedure_process_person_role;
-      return next || Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT;
+      return next || Math.random() > 0.5 ? Role.PARTICIPANT : Role.PARTICIPANT;
+      //   return next || Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT;
       // newUser.role(Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT);
       //   console.log("roleeeeeee", next);
       //   if (next !== undefined) {

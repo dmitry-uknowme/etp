@@ -1,0 +1,11 @@
+$etp_procedure_process_widget_row $mol_view 
+	dom_name \tr
+	sub /
+		<= Label $mol_view 
+			dom_name \td
+			sub / 
+				<= label /$mol_view_content
+		<= Value $mol_view
+			dom_name \td
+			sub / 
+				<= value /$mol_view_content
