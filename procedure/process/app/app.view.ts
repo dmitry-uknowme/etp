@@ -1,4 +1,5 @@
 namespace $.$$ {
+  const Role = $etp_procedure_process_person_role;
   export class $etp_procedure_process_app extends $.$etp_procedure_process_app {
     space_opened() {
       return this.$.$mol_state_arg.value("space");
@@ -37,16 +38,10 @@ namespace $.$$ {
     @$mol_mem
     role(next?: $etp_procedure_process_person_role) {
       const Role = $etp_procedure_process_person_role;
-      return next || Math.random() > 0.5 ? Role.PARTICIPANT : Role.PARTICIPANT;
-      //   return next || Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT;
-      // newUser.role(Math.random() > 0.5 ? Role.ORGANIZER : Role.PARTICIPANT);
-      //   console.log("roleeeeeee", next);
-      //   if (next !== undefined) {
-      //     this.user().role(next);
-      //     return next;
-      //   }
-      //   //   return "PARTICIPANT";
-      //   return this.user().role();
+      if (next === undefined) {
+        return Math.random() > 0.5 ? Role.PARTICIPANT : Role.ORGANIZER;
+      }
+      return next;
     }
 
     @$mol_mem

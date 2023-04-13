@@ -8,7 +8,7 @@ $etp_procedure_process_app $mol_book2
 				<= Online $hyoo_sync_online
 					yard <= yard
 				<= Role_select $mol_select
-					value <= role
+					value?val <=> role?val
 					dictionary <= role_options
 		<= Bids $etp_procedure_process_space_bids
 			space <= space $etp_procedure_process_space

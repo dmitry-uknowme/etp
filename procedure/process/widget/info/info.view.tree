@@ -1,9 +1,9 @@
 $etp_procedure_process_widget_info $mol_section
 	title <= section_title \
+	Row*0 $etp_procedure_process_widget_row
 	content /
 		<= Table $mol_view
 			dom_name \table
 			sub /
-				<= Row $etp_procedure_process_widget_row
-					label \Label	
-					value \Value
+				<= rows /$etp_procedure_process_widget_row
+				

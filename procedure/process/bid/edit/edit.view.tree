@@ -6,6 +6,7 @@ $etp_procedure_process_bid_edit $mol_page
 	body /
 		<= Info $etp_procedure_process_widget_info
 			section_title \Сведения о закупке
+			rows <= section_rows
 		<= Form $mol_form
 			form_fields /
 				<= Price_field $mol_form_field

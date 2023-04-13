@@ -5,8 +5,8 @@ $etp_procedure_process_space_bids $mol_page
 		bid_add => bid_add
 		bid_drop* => bid_drop*
 	Title $mol_string_button
-		value \Подача заявок
-	title \Подача заявок
+		value \Прием заявок
+	title \Прием заявок
 	tools /
 		<= Bid_add $mol_button_major
 			click <= bid_add
