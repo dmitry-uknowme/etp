@@ -1,6 +1,8 @@
 $etp_procedure_process_app $mol_book2
 	yard $hyoo_sync_client
 	role $etp_procedure_process_person_role
+	plugins /
+		<= Theme $mol_theme_auto
 	pages /
 		<= Steps $etp_procedure_process_space_steps
 			role <= role $etp_procedure_process_person_role
@@ -10,6 +12,7 @@ $etp_procedure_process_app $mol_book2
 				<= Role_select $mol_select
 					value?val <=> role?val
 					dictionary <= role_options
+				<= Lights $mol_lights_toggle
 		<= Bids $etp_procedure_process_space_bids
 			space <= space $etp_procedure_process_space
 		<= Bid_edit $etp_procedure_process_bid_edit

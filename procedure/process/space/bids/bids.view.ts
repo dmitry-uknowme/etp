@@ -25,6 +25,7 @@ namespace $.$$ {
 
     @$mol_mem
     allow_edit(next?: boolean): boolean {
+      // $mol_theme
       if (next !== undefined) {
         return next;
       } else {
